@@ -1,6 +1,4 @@
-#include <rarray>
-#include <cmath>
-#include <iostream>
+#include "init.h"
 
 rarray<double,2> init_matrix(int N){
     rarray<double, 2> space(N,N);
@@ -20,20 +18,4 @@ rarray<double,2> init_matrix(int N){
     }
 
     return space;
-}
-
-int main(int argc, char* argv[]){
-
-
-    int N = 500;
-
-    try {
-        if (argc > 1) N = std::stoi(argv[1]);
-    }
-    catch(...){
-
-        return 1;
-    }
-    init_matrix(N);
-    return 0;
 }
