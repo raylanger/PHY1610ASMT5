@@ -1,5 +1,5 @@
-#ifndef ROOTH
-#define ROOTH
+#ifndef INITH
+#define INITH
 
 #include <rarray>
 #include <cmath>
