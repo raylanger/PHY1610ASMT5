@@ -45,6 +45,7 @@ int main(int argc, char* argv[]){
 
         // If maxDiff less than threshold, set converged to true.
         if (maxDiff < epsilon){
+            std::cout<<"Converged!"<<"\n";
             converged = true;
         }
 

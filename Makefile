@@ -18,6 +18,9 @@ output.o: output.cpp output.h
 main.o: main.cpp init.h iterate.h output.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
+run: ASMT5
+	./ASMT5
+
 clean:
 	$(RM) init.o main.o
 
