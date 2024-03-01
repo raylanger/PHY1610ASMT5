@@ -4,26 +4,34 @@
 
 int main(int argc, char* argv[]){
 
+    // Set default parameters
     double epsilon = 1e-6;
     int N = 500;
     std::string filename = "Laplace.csv";
+
+    //Update parameters if specified
     try {
         if (argc > 1) N = std::stoi(argv[1]);
         if (argc > 2) epsilon = std::stod(argv[2]);
+        if (argc > 3) filename = argv[3];
     }
     catch(...){
 
         return 1;
     }
 
+    // Initialize matrix
     rarray<double,2> old_V = init_matrix(N);
 
+    // Set converged boolean
     bool converged = false;
-    int iter = 0;
 
     while(!converged){
+
+        // Get new matrix
         rarray<double,2> new_V = iterate(old_V);
 
+        //Determine maximum difference compared to old matrix
         double maxDiff = 0.0;
         for (int n = 0; n < N; n++){
             for (int m = 0; m < N; m++){
@@ -35,25 +43,16 @@ int main(int argc, char* argv[]){
             }
         }
 
+        // If maxDiff less than threshold, set converged to true.
         if (maxDiff < epsilon){
-            std::cout<<"Convergence!"<<"\n";
             converged = true;
         }
 
+        // Copy new_V to old_V
         old_V = new_V.copy();
-        iter += 1;
     }
 
+    // Output old_v to filename
     output(old_V, filename);
     return 0;
-    // if (converged){
-    //     std::cout << "Method converged" << "\n";
-    //     output(old_V, filename);
-    //     return 0;
-    // }
-    // else{
-
-    //     std::cout << "Method did not converge" << "\n";
-    //     return 1;
-    // }
 }
